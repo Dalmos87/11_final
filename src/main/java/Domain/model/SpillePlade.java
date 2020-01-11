@@ -1,88 +1,31 @@
 package Domain.model;
 
-import Domain.felt.Felt;
+import Domain.felt.*;
 
-import java.io.*;
 
 public class SpillePlade {
-    private static final int SIZE = 40;
-    private Felt[] felter = new Felt[SIZE];
+    protected Felt[] fields;
+    private Skød[] properties;
 
-    public SpillePlade() {
-        bygFelter();
-    }
+    public SpillePlade(String[] names, char[] types, int[] prices, String[] colors){
+        int numberOfFields = names.length;
+        this.fields = new Felt[numberOfFields];
 
-    //laver felter til brættet
-    private void bygFelter() {
-        //henter tekst ti lfelter
-        String fileName = "src/main/ressources/feltTekst.txt";
-        File file = new File(fileName);
-        String line;
-        String[] text = new String[40];
-        try {
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-            for (int i = 0; (line = bufferedReader.readLine()) != null; i++){
-                text[i] = line;
+        for (int i=0;i<numberOfFields;i++){
+            switch (types[i]){
+                case 'p': this.fields[i] = new Skød(names[i],i,colors[i],prices[i],types[i],-1);
+                    break;
+                case 'c': this.fields[i] = new PrøvLykkenFelt(names[i],i,colors[i],types[i]);
+                    break;
+                case 'j': this.fields[i] = new DeFængsles(names[i],i,colors[i],types[i]);
+                    break;
+                case 'v': this.fields[i] = new PåBesøg(names[i],i,colors[i],types[i]);
+                    break;
+                case 's': this.fields[i] = new Start(names[i],i,colors[i],types[i]);
+                    break;
+                case 'f': this.fields[i] = new GratisParkering(names[i],i,colors[i],types[i]);
+                    break;
             }
-            bufferedReader.close();
-
-        } catch (FileNotFoundException e) {
-            System.out.println("Unable to open file '" + fileName + "'");
-        } catch (IOException ex){
-            System.out.println("error reading file '" + fileName + "'");
         }
-
-        //sætter felter ind i Felt array og finder om feltet har et søsterfelt og hvad nummer det har, finder feltets pris
-        int soesterfelt = 0;
-        int pris = 0;
-        for (int i = 1; i <= SIZE; i++) {
-
-            //om feltet har et søsterfelt og søsterfelts nummer
-            if (i % 3 == 0) {
-                soesterfelt = i - 1;
-            } if ((i + 1) % 3 == 0) {
-                soesterfelt = i + 1;
-            }
-
-            //finder om feltet har en pris og hvad prisen er
-            if (soesterfelt + i == 5 || soesterfelt + i == 11){
-                pris = 1;
-            } if (soesterfelt + i == 17 || soesterfelt + i == 23){
-                pris = 2;
-            } if (soesterfelt + i == 29 || soesterfelt + i == 35){
-                pris = 3;
-            } if (soesterfelt + i == 41 || soesterfelt + i == 47){
-                pris = 4;
-            }
-
-            felter[i - 1] = new Felt(text[i - 1], soesterfelt, pris);
-        }
-    }
-
-    public String getFeltName(int index){
-        return felter[index - 1].getName();
-    }
-
-
-    public int getSoesterfelt(int index){
-        return felter[index - 1].getSoesterFelt();
-    }
-
-    public int getPris(int index){
-        return felter[index - 1].getPris();
-    }
-
-    public boolean getOwned(int index){
-        return felter[index - 1].getOwned();
-    }
-
-    public void setOwner(int index, int player){
-        felter[index - 1].setOwner(player);
-    }
-
-    public int getOwner(int index){
-        return felter[index - 1].getOwner();
     }
 }
