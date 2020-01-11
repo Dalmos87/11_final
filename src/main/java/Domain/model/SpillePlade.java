@@ -1,5 +1,7 @@
 package Domain.model;
 
+import Domain.felt.Felt;
+
 import java.io.*;
 
 public class SpillePlade {
