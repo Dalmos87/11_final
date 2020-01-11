@@ -1,0 +1,22 @@
+Vælg antal spillere
+Indtast spillernavne i orden efter alder. Lavest til højest
+Indtast navn på spiller
+Vælg farve til spiller
+Det er
+'s tur
+Tryk på knappen for at fortsætte
+Gå lige i fængsel! Du passerer ikke START. Du modtager ikke 2$. I starten af din næste tur skal du betale 1$ eller bruge 'Du løslades uden omkostninger'-kortet, hvis du har det. Kast derefter terningen, og ryk som normalt.Du kan godt modtage husleje, mens du er i fængsel
+er ledigt, tillykke du har købt feltet for $
+ejer feltet og du skal betale husleje på $
+ejer begge felter og du skal betale husleje på $
+Du slog
+Du ejer selv feltet og skal ikke betale husleje
+Du er i fængsel!
+Du har et "Du løslades uden omkostninger" -kort og må slå uden at betale
+Du skal betale $1 for at komme fri
+kan ikke betale for, at komme ud af fængsel
+kan ikke betale husleje
+kan ikke betale for grunden
+vandt spillet med $
+og
+kan ikke betale
