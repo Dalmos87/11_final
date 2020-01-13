@@ -1,62 +1,80 @@
 package Domain.model;
+import Domain.felt.Felt;
 
 public class Spiller {
-
+    private Pung account = new Pung(0); //Opretter ny spiller. Spillerens start værdi varierer efter hvor mange spiller der er i spillet
     private String name;
-    private Pung pung = new Pung();
-    private Brik brik = new Brik();
-    private boolean freeOutJail = false;
-    private boolean inJail = false;
+    private int currentFieldId;
+    private int id;
+    private boolean hasPrisonCard=false;
+    private boolean inPrison=false;
+    private boolean nextTurnVacantField = false;
 
-    public Spiller(String name){
+
+    public Spiller(String name, int pointStart, int id){
+        this.account.setBalance(pointStart);
         this.name = name;
+        this.currentFieldId=0;
     }
 
-    public void setBalance(int modifier){
-        pung.setBalance(modifier);
-    }
-
-    public void setLocation(int location){
-        brik.setLocation(location);
-    }
-
-    public void addToBalance(int modifier){
-        pung.addToBalance(modifier);
-    }
-
-    public int getBalance(){
-        return pung.getBalance();
-    }
-
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public void setBrikLocation(int modifier) {
-        brik.setBrikLocation(modifier);
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getBrikLocation(){
-        return brik.getBrikLocation();
+    public int getAccountBalance(){
+        return this.account.getBalance();
     }
 
-    public boolean getPassedStart(){
-        return  brik.getPassedStart();
+    public int getCurrentFieldId() {
+        return currentFieldId;
     }
 
-    public boolean getFreeOutJail(){
-        return freeOutJail;
+    public void setCurrentFieldId(int currentFieldId){
+        this.currentFieldId=currentFieldId;
     }
 
-    public  void setFreeOutJail(Boolean modify){
-        freeOutJail = modify;
+    public int getId() {
+        return id;
     }
 
-    public void setInJail(boolean modifier){
-        inJail = modifier;
+    public void deposit(int amount){
+        this.account.deposit(amount);
     }
 
-    public boolean getInJail(){
-        return inJail;
+    public void withdraw(int amount){
+        this.account.withdraw(amount);
     }
+
+    public boolean isHasPrisonCard() {
+        return hasPrisonCard;
+    }
+
+    public void setHasPrisonCard(boolean hasPrisonCard) {
+        this.hasPrisonCard = hasPrisonCard;
+    }
+
+    public boolean isInPrison() {
+        return inPrison;
+    }
+
+    public void setInPrison(boolean inPrison) {
+        this.inPrison = inPrison;
+    }
+
+    public boolean isNextTurnVacantField() {
+        return nextTurnVacantField;
+    }
+
+    public void setNextTurnVacantField(boolean nextTurnVacantField) {
+        this.nextTurnVacantField = nextTurnVacantField;
+    }
+
+    public Pung getAccount() {
+        return this.account;
+    }
+
 }
