@@ -12,6 +12,7 @@ public class Raflebæger {
         Die2.roll();
     }
 
+
     public int face_sum(){
         return Die1.getFaceValue() + Die2.getFaceValue();
     }
