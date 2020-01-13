@@ -5,7 +5,7 @@ import Domain.felt.Skød;
 import java.util.ArrayList;
 
 public class SystemController {
-    private MonopolySpilController gameController;
+  /*  private MonopolySpilController gameController;
     private GUIController viewController;
     private boolean gameOver=false;
 
@@ -375,5 +375,7 @@ public class SystemController {
             gameOver=true;
         }
     }
+
+   */
 
 }
