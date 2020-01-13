@@ -6,16 +6,19 @@ public class Terning {
 
     public Terning()
     {
+
         roll();
     }
 
     public void roll()
     {
+
         faceValue = (int) ( ( Math.random(  ) * MAX ) + 1 );
     }
 
     public int getFaceValue()
     {
+
         return faceValue;
     }
 }

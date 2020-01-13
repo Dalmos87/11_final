@@ -1,6 +1,6 @@
 package Domain.model;
 
-public class PrøvLykkenKort {
+public class PrøvLykkenKort  {
     private String name;
 
     public PrøvLykkenKort(String name){
