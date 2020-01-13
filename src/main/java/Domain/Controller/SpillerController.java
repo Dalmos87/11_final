@@ -86,12 +86,5 @@ public class SpillerController {
         return succes;
     }
 
-    public void payToLeaveJail(Spiller player) throws Exception {
-        player.withdraw(1000);
-        //gui.(player);
-        player.setInPrison(false);
-
-
-    }
 
 }
