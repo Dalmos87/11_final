@@ -6,7 +6,7 @@ import Domain.model.SpillePlade;
 
 public class SpillePladeController {
 
-    private SpillePlade gameBoard;
+    private SpillePlade spillePlade;
     private String[] names = {"START","Rødovrevej","Prøv Lykken", "Hvidovrevej", "Betal inkomstskat",
             "Øresund", "Roskildeevej", "Prøv Lykken", "Valby Langgade",
             "Allegadé", "Fængsel", "Frederiksberg Allé", "Tuborg", "Bülowsvej", "Gl. Kongevej",
@@ -15,19 +15,27 @@ public class SpillePladeController {
             "Kgs. Nytorv", "Carlsberg", "Østergade", "Gå i fængsel", "Amagertorv", "Vimmelskaftet",
             "Prøv Lykken", "Nygade", "Bornholm", "Prøv Lykken", "Frederiksberggade", "Ekstraordinær statsskat", "Rådhuspladse"};
 
-    private char[] types = {'s','S','P','S','S','S','v','p','p','c','p','p','f','p','p','c','p','p','j','p','p','c','p','p'};
-    private int[] prices = {0,1,1,0,1,1,0,2,2,0,2,2,0,3,3,0,3,3,0,4,4,0,5,5};
-    private String[] colors = {"WHITE","BROWN","BROWN","WHITE","CYAN","CYAN","WHITE","MAGENTA","MAGENTA","WHITE",
-            "ORANGE","ORANGE","WHITE","RED","RED","WHITE","YELLOW","YELLOW","WHITE","GREEN","GREEN","WHITE","BLUE","BLUE"};
+    private char[] types = {'s','S','P','S','I','S','S','P','S','S','B','S','S',
+            'S','S','S','S','P','S','S','G','S','P','S',
+            'S','S','S','S','S','S','D','S','S','P','S','S','P','S','E','S' };
+
+    private int[] prices = {0,600,0,600,2000,200,100,0,100,120,0,1400,150,1400,1400,
+            200,1800,0,1800,1800,0,2200,0,2200,2400,
+            200,2600,2600,150,2800,0,3000,3000,0,3200,200,0,3500,1000,4000};
+
+    private String[] colors = {"WHITE","Dark Purple","WHITE","Dark Purple","WHITE","WHITE","Light Blue","WHITE","Light Blue","Light Blue",
+            "WHITE","Pinks","WHITE","Pinks","Pinks","WHITE","Orange","WHITE","Orange","Orange",
+            "WHITE","Reds","WHITE","Reds","Reds","WHITE","Yellows","Yellows","WHITE",
+            "Yellows","WHITE","Greens","Greens","WHITE","Greens","WHITE","WHITE","Dark Blues","WHITE","Dark Blues"};
 
 
 
     public SpillePladeController(){
-        this.gameBoard=new SpillePlade(this.names,this.types,this.prices,this.colors);
+        this.spillePlade=new SpillePlade(this.names,this.types,this.prices,this.colors);
     }
 
     public SpillePlade getGameBoard() {
-        return gameBoard;
+        return spillePlade;
     }
 
     public String[] getNames() {
@@ -51,12 +59,12 @@ public class SpillePladeController {
     }
 
     public int[] getPropertiesOwnedByIds(){
-        int[] list = new int[24];
-        for (int i=0;i<24;i++){
-            if(gameBoard.getFields()[i].getType()!='p'){
+        int[] list = new int[40];
+        for (int i=0;i<40;i++){
+            if(spillePlade.getFields()[i].getType()!='S'){
                 list[i]=-2;
             } else {
-                list[i]=((Skød)gameBoard.getFields()[i]).getOwnedByPlayerId();
+                list[i]=((Skød)spillePlade.getFields()[i]).getOwnedByPlayerId();
             }
         }
         return list;
