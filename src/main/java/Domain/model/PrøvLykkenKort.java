@@ -1,13 +1,19 @@
 package Domain.model;
 
 public class PrøvLykkenKort  {
-    private String name;
+    private String text;
+    private int id;
 
-    public PrøvLykkenKort(String name, int i){
-        this.name = name;
+    public PrøvLykkenKort(String text, int id){
+        this.text = text;
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getText() {
+        return text;
+    }
+
+    public int getId() {
+        return id;
     }
 }
