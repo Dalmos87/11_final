@@ -4,7 +4,7 @@ public class PrøvLykkenKortBunke {
     private PrøvLykkenKort[] prøvLykkenKorts;
 
     public PrøvLykkenKortBunke(String[] chanceCardTexts,int numberOfPlayers){
-        int numberOfRelevantChanceCards = chanceCardTexts.length-4+numberOfPlayers;
+        int numberOfRelevantChanceCards = chanceCardTexts.length-6+numberOfPlayers;
         this.prøvLykkenKorts = new PrøvLykkenKort[numberOfRelevantChanceCards];
 
         for (int i=0;i<numberOfRelevantChanceCards;i++){

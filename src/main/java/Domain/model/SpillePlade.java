@@ -25,9 +25,11 @@ public class SpillePlade {
                     break;
                 case 'G': this.fields[i] = new GratisParkering(names[i],i,colors[i],types[i]);
                     break;
-
+                case 'I': this.fields[i] = new Indkomstskat(names[i],i,colors[i],types[i]);
+                    break;
+                case 'E': this.fields[i] = new StatsSkat(names[i],i,colors[i],types[i]);
             }
-        }
+                    }
     }
 
     public Felt[] getFields() {

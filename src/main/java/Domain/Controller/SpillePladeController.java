@@ -23,10 +23,10 @@ public class SpillePladeController {
             200,1800,0,1800,1800,0,2200,0,2200,2400,
             200,2600,2600,150,2800,0,3000,3000,0,3200,200,0,3500,1000,4000};
 
-    private String[] colors = {"WHITE","Dark Purple","WHITE","Dark Purple","WHITE","WHITE","Light Blue","WHITE","Light Blue","Light Blue",
-            "WHITE","Pinks","WHITE","Pinks","Pinks","WHITE","Orange","WHITE","Orange","Orange",
-            "WHITE","Reds","WHITE","Reds","Reds","WHITE","Yellows","Yellows","WHITE",
-            "Yellows","WHITE","Greens","Greens","WHITE","Greens","WHITE","WHITE","Dark Blues","WHITE","Dark Blues"};
+    private String[] colors = {"WHITE","CYAN","WHITE","CYAN","WHITE","WHITE","PINK","WHITE","PINK","PINK",
+            "WHITE","ORANGE","WHITE","ORANGE","ORANGE","WHITE","GRAY","WHITE","GRAY","GRAY",
+            "WHITE","RED","WHITE","RED","RED","WHITE","YELLOW","YELLOW","WHITE",
+            "YELLOW","WHITE","GREEN","GREEN","WHITE","GREEN","WHITE","WHITE","BLUE","WHITE","BLUE"};
 
 
 

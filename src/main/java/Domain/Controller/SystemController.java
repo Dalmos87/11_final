@@ -1,11 +1,13 @@
 package Domain.Controller;
 
 import Domain.felt.Skød;
+import View.GUIController;
 
 import java.util.ArrayList;
 
 public class SystemController {
-  /*  private MonopolySpilController gameController;
+
+    private MonopolySpilController gameController;
     private GUIController viewController;
     private boolean gameOver=false;
 
@@ -96,6 +98,7 @@ public class SystemController {
     public void playGame(){
         int activePlayerId = 0;
         int roll=0;
+        int roll2=0;
         int newFieldId;
         String activePlayerName;
         while (!gameOver){
@@ -120,7 +123,9 @@ public class SystemController {
 
                 //rolls the die
                 roll = gameController.getRoll();
-                viewController.showDie(roll);
+                viewController.showDie(roll,roll2);
+
+
 
 
                 //Updates the position of the active player
@@ -145,26 +150,33 @@ public class SystemController {
         //Gets name of active player
         String activePlayerName = gameController.getPlayerController().getPlayers()[playerId].getName();
         switch (gameController.getBoardController().getCurrentField(newFieldId).getType()){
-            case 'p':
+            case 'S':
                 landedOnProperty(playerId,newFieldId);
                 break;
-            case 'c':
+            case 'P':
                 landedOnChanceCardField(playerId,newFieldId);
                 break;
-            case 'j':
+            case 'D':
                 landedOnJail(playerId);
                 break;
-            case 'v':
+            case 'B':
                 viewController.showMessage( activePlayerName+ " er på besøg i fængsel.");
                 break;
             case 's':
                 viewController.displayLandedOnNewField(activePlayerName,"start");
                 break;
-            case 'f':
+            case 'G':
                 viewController.displayLandedOnNewField(activePlayerName,"gratis parkering");
                 break;
+            case 'I':
+                viewController.displayLandedOnNewField(activePlayerName,"skal betal");
+                break;
+            case 'E':
+                viewController.displayLandedOnNewField(activePlayerName,"man skal betal");
         }
+
     }
+
 
     public void landedOnJail(int playerId){
         viewController.displayLandedOnNewField(gameController.getPlayerController().getPlayers()[playerId].getName(),"Fængslet");
@@ -210,10 +222,10 @@ public class SystemController {
         String selection="";
         switch (ccId){
             case 0://Ryk frem til start
-                movePlayerCar(playerId,24-fieldId,false);
+                movePlayerCar(playerId,40-fieldId,false);
                 break;
             case 1://Ryk frem til standpromenaden
-                movePlayerCar(playerId,23-fieldId,false);
+                movePlayerCar(playerId,39-fieldId,false);
                 break;
             case 2://Ryk op til 5 felter frem
                 selection = viewController.getUserSelection("Hvor mange felter vil du rykke frem?","1","2","3","4","5");
@@ -254,11 +266,11 @@ public class SystemController {
                 freePropertyChanceCard(playerId,fieldId,1,2,16,17);
                 break;
             case 12://Betal 2 til banken
-                viewController.showMessage(activePlayerName + " betaler bøden på M2.");
+                viewController.showMessage(activePlayerName + " betaler bøden på Kr.");
                 gameOver = !gameController.getPlayerController().safeTransferToBank(playerId,2);
                 break;
             case 13: //Modtag 2
-                viewController.showMessage(activePlayerName + " modtager gevinsten på M2.");
+                viewController.showMessage(activePlayerName + " modtager gevinsten på Kr.");
                 gameController.getPlayerController().safeTransferToBank(playerId,-2);
                 break;
             case 14: //Fødseldsag
@@ -375,7 +387,5 @@ public class SystemController {
             gameOver=true;
         }
     }
-
-   */
 
 }
