@@ -123,7 +123,8 @@ public class SystemController {
 
                 //rolls the die
                 roll = gameController.getRoll();
-                viewController.showDie(roll,roll2);
+                viewController.showDie(roll);
+
 
 
 

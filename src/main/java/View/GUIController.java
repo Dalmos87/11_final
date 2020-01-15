@@ -3,6 +3,7 @@ package View;
 import gui_fields.*;
 import gui_main.GUI;
 import java.awt.*;
+import java.util.ArrayList;
 
 
 public class GUIController {
@@ -45,7 +46,7 @@ public class GUIController {
                     case 'S': //Property
                         fields[i] = new GUI_Street();
                         fields[i].setSubText(+prices[i]+ "Kr."); //SubText er under "Overskriften. Hvis ingen SubText metode vil der stå "SubText" på Boardet
-                        fields[i].setDescription("Ledig");
+                        fields[i].setDescription("");
                         break;
                     case 's': //Start
                         fields[i] = new GUI_Start();
@@ -91,33 +92,41 @@ public class GUIController {
                     }
                 }
 
+                fields[i].setDescription(names[i]);
                 fields[i].setBackGroundColor(newColor);
                 fields[i].setTitle(names[i]);
             }
             this.guiFields = fields;
-            this.gui = new GUI(fields,Color.WHITE);
+            this.gui = new GUI(fields,Color.GREEN);
+            this.gui.setChanceCard("Prøv lykken");
         }
 
         public String[] createPlayers(){
-            int playerSelection = 3;
+            int playerSelection = 2;
             playerSelection = Integer.parseInt(gui.getUserButtonPressed("Vælg antal spillere","3","4","5","6"));
             String[] playerNames = new String[playerSelection];
             String input;
             for (int i=0;i<playerSelection;){
                 input = gui.getUserString("Spiller "+(i+1) + " skriv dit navn");
-                if(!checkPlayerexsistance(playerNames,input)){
-                    playerNames[i] = input;
-                    i++;
-                } else{
-                    gui.showMessage("To spillere må ikke have samme navn! prøv " + input+"1");
+                if(input != null ) {
+                    if (!checkPlayerexsistance(playerNames, input) && !(input.length()==0)) {
+                        playerNames[i] = input;
+                        i++;
+                    } else {
+                        gui.showMessage("To spillere må ikke have samme navn, og navnet må ikke være tomt.");
+                    }
                 }
-
-
-
+                else if(input == null ){
+                    gui.showMessage("Skriv venligst et navn!");
+                }
             }
 
             return playerNames;
         }
+
+
+
+
 
         public void setupGuiPlayers(String[] names, int[] startPoint, int startFieldId){
             guiPlayers = new GUI_Player[names.length];
@@ -146,8 +155,8 @@ public class GUIController {
             gui.showMessage(name + " er landet på " + fieldName +".");
         }
 
-        public void showDie(int die,int die1){
-            gui.setDice(die,die1);
+        public void showDie(int die){
+            gui.setDie(die);
 
         }
         /*
@@ -156,11 +165,17 @@ public class GUIController {
         public void showMessage(String msg){
             gui.showMessage(msg);
         }
-        public boolean checkPlayerexsistance(String playerName[],String typedName){
 
-            //boolean playerexsistance = Arrays.stream(playerName).anyMatch(typedName::equals);
-            return false;
+    public static boolean checkPlayerexsistance(String[] playerName,String typedName){
+        //boolean playerexsistance = Arrays.stream(playerName).anyMatch(typedName::equals);
+        //return playerexsistance;
+        for( int i = 0; i < playerName.length; i++){
+
+            if(playerName[i] != null && playerName[i].equals(typedName))
+                return true;
         }
+        return false;
+    }
 
         public void displayChanceCard(String text){
             gui.displayChanceCard(text);
