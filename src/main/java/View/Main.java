@@ -8,7 +8,7 @@ public class Main {
         systemController.playGame();
 
 
-        int k=0;
+       /* int k=0;
 
 
         for (int i=0;i<12;i++){
@@ -18,6 +18,8 @@ public class Main {
                 systemController.movePlayerCar(j,k,false);
             }
         }
+        
+        */
 
     }
 }
