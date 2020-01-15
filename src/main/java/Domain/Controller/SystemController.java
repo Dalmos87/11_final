@@ -97,8 +97,9 @@ public class SystemController {
 
     public void playGame(){
         int activePlayerId = 0;
+
         int roll=0;
-        int roll2=0;
+
         int newFieldId;
         String activePlayerName;
         while (!gameOver){
@@ -123,7 +124,9 @@ public class SystemController {
 
                 //rolls the die
                 roll = gameController.getRoll();
+
                 viewController.showDie(roll);
+
 
 
 
@@ -142,7 +145,8 @@ public class SystemController {
             activePlayerId++;
             activePlayerId = activePlayerId % gameController.getNumberOfPlayers();
         }
-
+        viewController.showMessage("Tak for spillet! Luk vinduet ved at trykke på X i hjørnet, eller tryk OK for at spille igen.");
+        viewController.closeGui();
 
     }
 
@@ -152,7 +156,7 @@ public class SystemController {
         String activePlayerName = gameController.getPlayerController().getPlayers()[playerId].getName();
         switch (gameController.getBoardController().getCurrentField(newFieldId).getType()){
             case 'S':
-                landedOnProperty(playerId,newFieldId);
+                landedOnProperty(playerId,newFieldId,false);
                 break;
             case 'P':
                 landedOnChanceCardField(playerId,newFieldId);
@@ -181,7 +185,7 @@ public class SystemController {
 
     public void landedOnJail(int playerId){
         viewController.displayLandedOnNewField(gameController.getPlayerController().getPlayers()[playerId].getName(),"Fængslet");
-        movePlayerCar(playerId,12,true);
+        movePlayerCar(playerId,6,true);
         gameController.setPlayerInPrison(playerId,true);
         updatePlayerBalances();
     }
@@ -195,12 +199,24 @@ public class SystemController {
     }
 
 
-    public void landedOnProperty(int playerId, int fieldId){
-        String statusMessage = gameController.landedOnProperty(playerId,fieldId);
+    public void landedOnProperty(int playerId, int fieldId,boolean free){
+        //Input playerId, fieldId and free-boolean.
+        //if free==true, the player will get the property for free. Otherwise, the balances and ownership will be
+        //updated and displayed on the board correctly.
+
+        //Makes the gameController update balances and ownership. Returns a message describing what happened.
+        String statusMessage = gameController.landedOnProperty(playerId,fieldId,free);
+
+        //If the player now owns the field, the ownership is displayed on the board
+        if (statusMessage.contains("og ejer nu") || statusMessage.contains(" gratis på grund af sit chancekort!")){
+            //A bit of a problem if the player names contains these
+            int fieldPrice =gameController.getBoardController().getGameBoard().getFields()[fieldId].getPrice();
+            String playerName = gameController.getPlayerController().getPlayers()[playerId].getName();
+            viewController.setNewPropertyOwner(fieldId,fieldPrice,playerName);
+        }
         viewController.showMessage(statusMessage);
         updatePlayerBalances();
         checkIfGameOver();
-
     }
 
     public void landedOnChanceCardField(int playerId,int fieldId){
@@ -339,7 +355,7 @@ public class SystemController {
             simulatedRoll+=40;
         }
         movePlayerCar(playerId,simulatedRoll,false);
-        landedOnProperty(playerId,chosenFieldId);
+        landedOnProperty(playerId,chosenFieldId, false);
     }
 
     public void moveToVacantProperty(int playerId, int oldFieldId){
@@ -371,10 +387,10 @@ public class SystemController {
         //Moves the player to the correct field
         int simulatedRoll = (40+selectedFieldId-oldFieldId)%40;
         movePlayerCar(playerId,simulatedRoll,false);
-        landedOnProperty(playerId,selectedFieldId);
-
+        landedOnProperty(playerId,selectedFieldId,false);
 
     }
+
 
 
 

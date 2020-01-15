@@ -190,10 +190,13 @@ public class GUIController {
             return  gui.getUserButtonPressed(msg,options);
         }
 
-        public GUI getGui() {
-            return gui;
-        }
-    }
+        public void setNewPropertyOwner(int fieldId, int price, String ownerName){
+        guiFields[fieldId].setSubText("Pris: "+price + "Kr." +"     Ejes af "+ownerName+".");
+         }
 
+      public void closeGui(){
+        gui.close();
+    }
+        }
 
 

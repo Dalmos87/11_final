@@ -117,7 +117,7 @@ public class MonopolySpilController {
             return msg;
         }
 
-        public String landedOnProperty(int playerId, int fieldId){
+        public String landedOnProperty(int playerId, int fieldId, boolean free){
             //Checks who, if anyone, owns the field
             int propertyOwnerId = boardController.getPropertiesOwnedByIds()[fieldId];
             int activePlayerBalance = playerController.getPlayerBalances()[playerId];
