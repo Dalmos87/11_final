@@ -16,7 +16,7 @@ public class PLKB_Controller {
 
     private String[] chanceCardTexts = new String[]{
             //Move to certain destination 0-3
-            "Ryk frem til START.\nModtag M2.",
+            "Ryk frem til START.\nModtag 4000Kr.",
             "Ryk frem til Strandpromenaden",
             "Ryk op til 5 felter frem.",
             "Ryk 1 felt frem, eller tag et chancekort mere.",

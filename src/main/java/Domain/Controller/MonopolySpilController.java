@@ -153,9 +153,9 @@ public class MonopolySpilController {
                     msg += activePlayerName +" bruger sit løsladelseskort til at forlade fængslet uden bøde.";
                 }
                 else{     //He doesnt have the card
-                    boolean canAfford =playerController.safeTransferToBank(activePlayerId,1);
+                    boolean canAfford =playerController.safeTransferToBank(activePlayerId,1000);
                     if (canAfford){
-                        msg += activePlayerName + " betaler M1 i bøde og forlader fængslet.";
+                        msg += activePlayerName + " betaler 1000kr i bøde og forlader fængslet.";
                     } else{
                         msg+= activePlayerName + " har ikke råd til at betale bøden.";
                         gameOver=true;

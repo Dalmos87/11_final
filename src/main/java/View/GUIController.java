@@ -34,6 +34,7 @@ public class GUIController {
 
         public GUIController(String[] names, String[] colorNames, int[] prices, char[] types){
             boardSetup(names,colorNames,prices,types);
+            gui.showMessage("Velkommen til Matador-spillet udviklet af gruppe 11.");
         }
 
 
