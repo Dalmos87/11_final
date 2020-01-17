@@ -81,6 +81,28 @@ public class MonopolySpilController {
             return playerController.getNumberOfPlayers();
         }
 
+        //////////////////////////////////////////////////////////////////////////////
+        public boolean isindkomstSkatFelt(int playerID){
+            return playerController.isIndkomstSkatFelt(playerID);
+        }
+
+        public void setIndkomstSkatFelt(int playerID, boolean indkomstSkat){
+            playerController.setIndkomstSkatFelt(playerID,indkomstSkat);
+        }
+
+        public boolean isStatsSkatFelt(int playerID){
+            return playerController.isStatsSkatFelt(playerID);
+        }
+
+        public void setStatsSkatFelt(int playerID, boolean statsSkatFelt){
+            playerController.setStatsSkatFelt(playerID,statsSkatFelt);
+        }
+
+        ////////////////////////////////////////////////////////////////////////////
+
+
+
+
         public boolean isPlayerInPrison(int playerID){
             return playerController.isPlayerInPrison(playerID);
 
@@ -89,6 +111,36 @@ public class MonopolySpilController {
         public void setPlayerInPrison(int playerID,boolean inPrison){
             playerController.setPlayerInPrison(playerID,inPrison);
         }
+
+
+
+        /////////////////////////////////////////////////////////////////////////
+        public String indkomstskatFelt(int activePlayerID){
+            String msg1="";
+            String activePlayerName1 =playerController.getPlayers()[activePlayerID].getName();
+            if (isindkomstSkatFelt(activePlayerID)) {
+                boolean landPå =playerController.safeTransferToBank(activePlayerID,2000);
+                if (landPå){
+
+                    msg1 = activePlayerName1 + "Man Skal betal 2000kr.\n";}
+                setIndkomstSkatFelt(activePlayerID,false);
+            }
+            return msg1;
+        }
+
+        public String statsSkatFelt(int activePlayerID){
+            String msg1="";
+            String activePlayerName1 =playerController.getPlayers()[activePlayerID].getName();
+            if (isStatsSkatFelt(activePlayerID)) {
+                boolean landPå =playerController.safeTransferToBank(activePlayerID,1000);
+                if (landPå){
+
+                    msg1 = activePlayerName1 + "Man Skal betal 1000kr.\n";}
+                setIndkomstSkatFelt(activePlayerID,false);
+            }
+            return msg1;
+        }
+        ////////////////////////////////////////////////////////////////////////////////
 
         public String executePlayerInPrison(int activePlayerId){
             //Checks if player is in prison. If true it checks if the player has a "Prison chancecard", else it withdraw 1 points from playercard

@@ -86,5 +86,22 @@ public class SpillerController {
         return succes;
     }
 
+    /////////////////////////////////////////////////////////
+    public boolean isIndkomstSkatFelt (int playerID){
+        return players[playerID].isIndkomstSkatFelt();
+    }
+
+    public void setIndkomstSkatFelt(int playerID, boolean indkomstSkatFelt){
+        players[playerID].setIndkomstSkatFelt(indkomstSkatFelt);
+    }
+
+    public boolean isStatsSkatFelt (int playerID){
+        return players[playerID].isStatsSkatFelt();
+    }
+
+    public void setStatsSkatFelt(int playerID, boolean statsSkatFelt){
+        players[playerID].setIndkomstSkatFelt(statsSkatFelt);
+    }
+    //////////////////////////////////////////////////////////////
 
 }

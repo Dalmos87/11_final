@@ -121,6 +121,19 @@ public class SystemController {
                     viewController.showMessage(prisonMessage);
                 }
 
+                //////////////////////////////////////////////////////////////////
+               String indkomstSkatMassage = gameController.indkomstskatFelt(activePlayerId);
+                if (!indkomstSkatMassage.equals("")){
+                    viewController.showMessage(indkomstSkatMassage);
+                }
+
+                String statsSkatMassage = gameController.statsSkatFelt(activePlayerId);
+                if (!statsSkatMassage.equals("")){
+                    viewController.showMessage(statsSkatMassage);
+                }
+               //////////////////////////////////////////////////////////////////
+
+
 
                 //rolls the die
                 roll = gameController.getRoll();
@@ -174,13 +187,33 @@ public class SystemController {
                 viewController.displayLandedOnNewField(activePlayerName,"gratis parkering");
                 break;
             case 'I':
-                viewController.displayLandedOnNewField(activePlayerName,"skal betal");
+                landPåIndkomstSkatFelt(playerId);///////////////////////////////////////
                 break;
             case 'E':
-                viewController.displayLandedOnNewField(activePlayerName,"man skal betal");
+                landPåStatsSkatFelt(playerId);//////////////////////////////////////////
+
         }
 
     }
+
+
+    //////////////////////////////////////////////////////////////////////
+    public void landPåIndkomstSkatFelt(int playerId){
+        String activePlayerName = gameController.getPlayerController().getPlayers()[playerId].getName();
+        viewController.showMessage(activePlayerName + " Du skal betaler 2000Kr.");
+        gameOver = !gameController.getPlayerController().safeTransferToBank(playerId,2000);
+        gameController.setIndkomstSkatFelt(playerId,true);
+        updatePlayerBalances();
+    }
+
+    public void landPåStatsSkatFelt(int playerId){
+        String activePlayerName = gameController.getPlayerController().getPlayers()[playerId].getName();
+        viewController.showMessage(activePlayerName + "Du skal betaler 2000Kr.");
+        gameOver = !gameController.getPlayerController().safeTransferToBank(playerId,1000);
+        gameController.setStatsSkatFelt(playerId,true);
+        updatePlayerBalances();
+    }
+    ////////////////////////////////////////////////////////////////////////
 
 
     public void landedOnJail(int playerId){
