@@ -1,8 +1,11 @@
 package Domain.model;
 
 public class PrøvLykkenKortBunke {
+
+    //erklærer en objekt reference array af typen PrøvLykkenKort der gemmer kortenes oplysninger
     private PrøvLykkenKort[] prøvLykkenKorts;
 
+    //opretter en konstruktør der initialiserer kortenes oplysninger og antal spillere
     public PrøvLykkenKortBunke(String[] chanceCardTexts,int numberOfPlayers){
         int numberOfRelevantChanceCards = chanceCardTexts.length-6+numberOfPlayers;
         this.prøvLykkenKorts = new PrøvLykkenKort[numberOfRelevantChanceCards];
@@ -12,6 +15,7 @@ public class PrøvLykkenKortBunke {
         }
     }
 
+    //opretter en metode der modtager tilfældige kort og blander dem, derefter gemmes de i array objekter
     public void swap(int a, int b){
         PrøvLykkenKort cardA = prøvLykkenKorts[a];
         PrøvLykkenKort cardB = prøvLykkenKorts[b];
@@ -19,6 +23,7 @@ public class PrøvLykkenKortBunke {
         prøvLykkenKorts[b] = cardA;
     }
 
+    
     public void shuffle(){
         for (int i=0; i<1000; i++ ){
             int a= (int) (Math.random()*prøvLykkenKorts.length);
