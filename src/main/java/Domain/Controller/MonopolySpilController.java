@@ -85,7 +85,7 @@ public class MonopolySpilController {
         }
 
         //////////////////////////////////////////////////////////////////////////////
-        public boolean isindkomstSkatFelt(int playerID){
+        public boolean isIndkomstSkatFelt(int playerID){
             return playerController.isIndkomstSkatFelt(playerID);
         }
 
@@ -121,7 +121,7 @@ public class MonopolySpilController {
         public String indkomstskatFelt(int activePlayerID){
             String msg1="";
             String activePlayerName1 =playerController.getPlayers()[activePlayerID].getName();
-            if (isindkomstSkatFelt(activePlayerID)) {
+            if (isIndkomstSkatFelt(activePlayerID)) {
                 boolean landPå =playerController.safeTransferToBank(activePlayerID,2000);
                 if (landPå){
 
