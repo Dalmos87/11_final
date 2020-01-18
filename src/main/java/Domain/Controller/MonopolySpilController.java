@@ -172,53 +172,56 @@ public class MonopolySpilController {
             return msg;
         }
 
-        public String landedOnProperty(int playerId, int fieldId, boolean free){
-            //Checks who, if anyone, owns the field
-            int propertyOwnerId = boardController.getPropertiesOwnedByIds()[fieldId];
-            int activePlayerBalance = playerController.getPlayerBalances()[playerId];
-            int propertyPrice = boardController.getGameBoard().getFields()[fieldId].getPrice();
-            String propertyOwnerName="Ingen";
-            if(propertyOwnerId>=0){
-                propertyOwnerName = playerController.getPlayers()[propertyOwnerId].getName();
-            }
-            String propertyName = boardController.getGameBoard().getFields()[fieldId].getName();
-            String activePlayerName = playerController.getPlayers()[playerId].getName();
-            String msg="";
-            boolean canAfford;
+    public String landedOnProperty(int playerId, int fieldId,boolean free){
+        //Input: playerId, fieldId and "free"-boolean.
+        //free is only true, if the player lands on the property with a special chancecard and get it for free
+        //Returns a message that displays what happens, and updates the status of balances and so on automatically
 
-
-
-            if (playerId==propertyOwnerId){
-                msg+=activePlayerName+" ejer selv " + propertyName +".";
-            }
-            else if(propertyOwnerId>=0){ //If it is owned
-                msg+= propertyOwnerName + " ejer " + propertyName + ".\n";
-                canAfford = playerController.safeTransferToPlayer(playerId,propertyPrice,propertyOwnerId);
-                if (canAfford){
-                    msg+= activePlayerName +" betaler " + propertyPrice + "Kr. " + " til " +propertyOwnerName +".\n";
-                } else {
-                    msg+= activePlayerName +" skal betale " + propertyPrice + "Kr. " + " til " +propertyOwnerName +", men har ikke råd.\n";
-                  //  gameOver=true;//................
-                }
-
-
-            } else if (propertyOwnerId<0){//If it is not owned
-                msg+= guiController.getUserSelection("Vil du købe den?","Ja","Nej");
-                Random rand =new Random();
-                canAfford = playerController.safeTransferToBank(playerId,propertyPrice);
-                if (canAfford){
-                    msg+=activePlayerName +" betaler " + propertyPrice + "Kr. " +" til Banken og ejer nu "+propertyName+".\n";
-                    ((Skød)boardController.getGameBoard().getFields()[fieldId]).setOwnedByPlayerId(playerId);
-
-                } else{
-                    msg+= activePlayerName +" skal ikkke betale \n";
-                    gameOver=true;
-                }
-
-            }
-
-            return msg;
+        //Checks who, if anyone, owns the field
+        int propertyOwnerId = boardController.getPropertiesOwnedByIds()[fieldId];
+        int activePlayerBalance = playerController.getPlayerBalances()[playerId];
+        int propertyPrice = boardController.getGameBoard().getFields()[fieldId].getPrice();
+        String propertyOwnerName="Ingen";
+        if(propertyOwnerId>=0){
+            propertyOwnerName = playerController.getPlayers()[propertyOwnerId].getName();
         }
+        String propertyName = boardController.getGameBoard().getFields()[fieldId].getName();
+        String activePlayerName = playerController.getPlayers()[playerId].getName();
+        String msg="";
+        boolean canAfford;
+
+        if (playerId==propertyOwnerId){ //If the player owns it himself
+            msg+=activePlayerName+" ejer selv " + propertyName +".";
+        }
+        else if(propertyOwnerId>=0){ //If it is owned by someone else
+            msg+= propertyOwnerName + " ejer " + propertyName + ".\n";
+            canAfford = playerController.safeTransferToPlayer(playerId,propertyPrice,propertyOwnerId);
+            if (canAfford){
+                msg+= activePlayerName +" betaler " + propertyPrice +"Kr. "+ " til " +propertyOwnerName +".\n";
+            } else {
+                msg+= activePlayerName +" skal betale " + propertyPrice + "Kr. "+" til " +propertyOwnerName +", men har ikke råd.\n";
+                gameOver=true;
+            }
+
+        } else if (free){ //If it is not owned and the player gets it for free
+            msg+= propertyOwnerName + " ejer " + propertyName + ".\n";
+            msg+= activePlayerName +" får " + propertyName + " gratis på grund af sit chancekort!";
+            ((Skød)boardController.getGameBoard().getFields()[fieldId]).setOwnedByPlayerId(playerId);
+
+        }else if (propertyOwnerId==-1){//If it is not owned and it is not free
+            msg+= propertyOwnerName + " ejer " + propertyName + ".\n";
+            canAfford = playerController.safeTransferToBank(playerId,propertyPrice);
+            if (canAfford){
+                msg+= activePlayerName +" betaler " + propertyPrice + "Kr. "+" til Banken og ejer nu "+propertyName+".\n";
+                ((Skød)boardController.getGameBoard().getFields()[fieldId]).setOwnedByPlayerId(playerId);//Skal rette
+
+            } else {
+                msg+= activePlayerName +" skal betale " + propertyPrice + "Kr. "+" til banken, men har ikke råd.\n";
+                gameOver=true;
+            }
+        }
+        return msg;
+    }
 
 
 

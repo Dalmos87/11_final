@@ -100,7 +100,7 @@ public class SpillerController {
     }
 
     public void setStatsSkatFelt(int playerID, boolean statsSkatFelt){
-        players[playerID].setIndkomstSkatFelt(statsSkatFelt);
+        players[playerID].setStatsSkatFelt(statsSkatFelt);
     }
     //////////////////////////////////////////////////////////////
 
