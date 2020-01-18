@@ -71,7 +71,7 @@ public class GUIController {
                         break;
                     case 'G': //FreeParking
                         fields[i] = new GUI_Refuge();
-                        fields[i].setSubText("");
+                        fields[i].setSubText("Parkering");
                         fields[i].setDescription("");
                         break;
 

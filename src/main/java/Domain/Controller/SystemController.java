@@ -274,7 +274,7 @@ public class SystemController {
             case 0://Ryk frem til start
                 movePlayerCar(playerId,40-fieldId,false);
                 break;
-            case 1://Ryk frem til standpromenaden
+            case 1://Ryk frem til Rådhuspladsen
                 movePlayerCar(playerId,39-fieldId,false);
                 break;
             case 2://Ryk op til 5 felter frem

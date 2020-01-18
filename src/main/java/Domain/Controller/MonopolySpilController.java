@@ -2,6 +2,9 @@ package Domain.Controller;
 
 import Domain.felt.Skød;
 import Domain.model.Raflebæger;
+import View.GUIController;
+
+import java.util.Random;
 
 public class MonopolySpilController {
 
@@ -9,7 +12,7 @@ public class MonopolySpilController {
         private boolean gameOver = false;
         private int startBonus=4000;
         private SpillePladeController boardController;
-
+        private GUIController guiController;
         private PLKB_Controller ccd_controller;
 
 
@@ -184,6 +187,7 @@ public class MonopolySpilController {
             boolean canAfford;
 
 
+
             if (playerId==propertyOwnerId){
                 msg+=activePlayerName+" ejer selv " + propertyName +".";
             }
@@ -198,15 +202,16 @@ public class MonopolySpilController {
                 }
 
 
-            } else if (propertyOwnerId==-1){//If it is not owned
-                msg+= propertyOwnerName + " ejer " + propertyName + ".\n";
+            } else if (propertyOwnerId<0){//If it is not owned
+                msg+= guiController.getUserSelection("Vil du købe den?","Ja","Nej");
+                Random rand =new Random();
                 canAfford = playerController.safeTransferToBank(playerId,propertyPrice);
                 if (canAfford){
-                    msg+= activePlayerName +" betaler " + propertyPrice + "Kr. " +" til Banken og ejer nu "+propertyName+".\n";
+                    msg+=activePlayerName +" betaler " + propertyPrice + "Kr. " +" til Banken og ejer nu "+propertyName+".\n";
                     ((Skød)boardController.getGameBoard().getFields()[fieldId]).setOwnedByPlayerId(playerId);
 
-                } else {
-                    msg+= activePlayerName +" skal betale " + propertyPrice +"Kr. " + " til banken, men har ikke råd.\n";
+                } else{
+                    msg+= activePlayerName +" skal ikkke betale \n";
                     gameOver=true;
                 }
 
@@ -214,6 +219,9 @@ public class MonopolySpilController {
 
             return msg;
         }
+
+
+
 
         public boolean isGameOver() {
             return gameOver;

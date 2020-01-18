@@ -10,7 +10,7 @@ public class SpillePladeController {
     private String[] names = {"START","Rødovrevej","Prøv Lykken", "Hvidovrevej", "Betal inkomstskat",
             "Øresund", "Roskildeevej", "Prøv Lykken", "Valby Langgade",
             "Allegadé", "Fængsel", "Frederiksberg Allé", "Tuborg", "Bülowsvej", "Gl. Kongevej",
-            "D.F.D.S", "Bernstorffsvej", "Prøv Lykken", "Helleruovej", "Strandvej", "Helle", "Trianglen",
+            "D.F.D.S", "Bernstorffsvej", "Prøv Lykken", "Helleruovej", "Strandvej", "GratisParkering", "Trianglen",
             "Prøv Lykken", "Østerbrogade", "Grønningen", "Ø.S.", "Bredgade",
             "Kgs. Nytorv", "Carlsberg", "Østergade", "Gå i fængsel", "Amagertorv", "Vimmelskaftet",
             "Prøv Lykken", "Nygade", "Bornholm", "Prøv Lykken", "Frederiksberggade", "Ekstraordinær statsskat", "Rådhuspladse"};
