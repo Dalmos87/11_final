@@ -32,9 +32,9 @@ public class PLKB_Controller {
             "GRATIS FELT\nRyk frem til et brunt eller gult felt.\nHvis det er ledigt, får du det GRATIS! Ellers skal du betale leje til ejeren.",
 
             //Money transfer 12-14
-            "Du har spist for meget slik.\nBetal M2 til banken.",
-            "Du har lavet alle dine lektier! Modtag M2 fra banken.",
-            "Det er din fødselsdag!\n Alle giver dig M1.\nTillykke med fødselsdagen!",
+            "Betal 3000 for reparation af deres vogn .",
+            "De har vundet i klasselotteriet. Modtag 500 kr.",
+            "Det er din fødselsdag!\n Alle giver dig 300kr.\nTillykke med fødselsdagen!",
 
             //Escape prison card 15
             "Du løslades uden omkostninger.\nBehold dette kort, indtil du får brug for det",

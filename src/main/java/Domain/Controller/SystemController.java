@@ -317,16 +317,16 @@ public class SystemController {
                 break;
             case 12://Betal 2 til banken
                 viewController.showMessage(activePlayerName + " betaler bøden på Kr.");
-                gameOver = !gameController.getPlayerController().safeTransferToBank(playerId,2);
+                gameOver = !gameController.getPlayerController().safeTransferToBank(playerId,3000);
                 break;
             case 13: //Modtag 2
                 viewController.showMessage(activePlayerName + " modtager gevinsten på Kr.");
-                gameController.getPlayerController().safeTransferToBank(playerId,-2);
+                gameController.getPlayerController().safeTransferToBank(playerId,-500);
                 break;
             case 14: //Fødseldsag
                 for (int i =0; i<gameController.getNumberOfPlayers();i++){
                     if (i!=playerId) {
-                        if(!gameController.getPlayerController().safeTransferToPlayer(i, 1, playerId)){
+                        if(!gameController.getPlayerController().safeTransferToPlayer(i, 300, playerId)){
                             gameOver=true;
                         }
                     }
