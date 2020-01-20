@@ -238,18 +238,24 @@ public class SystemController {
         //updated and displayed on the board correctly.
 
         //Makes the gameController update balances and ownership. Returns a message describing what happened.
+        int fieldPrice =gameController.getBoardController().getGameBoard().getFields()[fieldId].getPrice();
         String statusMessage = gameController.landedOnProperty(playerId,fieldId,free);
-
+        boolean buy=viewController.buyFleetButton(fieldId,fieldPrice);
         //If the player now owns the field, the ownership is displayed on the board
-        if (statusMessage.contains("og ejer nu") || statusMessage.contains(" gratis på grund af sit chancekort!")){
-            //A bit of a problem if the player names contains these
-            int fieldPrice =gameController.getBoardController().getGameBoard().getFields()[fieldId].getPrice();
-            String playerName = gameController.getPlayerController().getPlayers()[playerId].getName();
-            viewController.setNewPropertyOwner(fieldId,fieldPrice,playerName);
+        if(buy){
+
+            if (statusMessage.contains("og ejer nu") || statusMessage.contains(" gratis på grund af sit chancekort!")){
+                //A bit of a problem if the player names contains these
+
+                // int fieldPrice =gameController.getBoardController().getGameBoard().getFields()[fieldId].getPrice();
+                String playerName = gameController.getPlayerController().getPlayers()[playerId].getName();
+                viewController.setNewPropertyOwner(fieldId,fieldPrice,playerName);
+
+            }
+            viewController.showMessage(statusMessage);
+            updatePlayerBalances();
+            checkIfGameOver();
         }
-        viewController.showMessage(statusMessage);
-        updatePlayerBalances();
-        checkIfGameOver();
     }
 
     public void landedOnChanceCardField(int playerId,int fieldId){

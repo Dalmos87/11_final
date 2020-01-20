@@ -215,9 +215,6 @@ public class MonopolySpilController {
                 msg+= activePlayerName +" betaler " + propertyPrice + "Kr. "+" til Banken og ejer nu "+propertyName+".\n";
                 ((Skød)boardController.getGameBoard().getFields()[fieldId]).setOwnedByPlayerId(playerId);//Skal rette
 
-            } else {
-                msg+= activePlayerName +" skal betale " + propertyPrice + "Kr. "+" til banken, men har ikke råd.\n";
-                gameOver=true;
             }
         }
         return msg;

@@ -195,9 +195,17 @@ public class GUIController {
         guiFields[fieldId].setSubText("Pris: "+price + "Kr." +"     Ejes af "+ownerName+".");
          }
 
-      public void closeGui(){
-        gui.close();
-    }
+
+        public boolean buyFleetButton(int field, int price){
+        return gui.getUserLeftButtonPressed(field + " har ingen ejer. Pris: " + price +
+                " kr. "  +  " kr. Vil de købe feltet?", "Ja", "Nej");
         }
+
+        public void closeGui(){
+        gui.close();
+         }
+
+
+   }
 
 
