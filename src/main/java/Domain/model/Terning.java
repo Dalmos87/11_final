@@ -10,7 +10,7 @@ public class Terning {
         roll();
     }
 
-    //opretter en metoder der generer et tilfældigt tal meleem 1-6 og gemmer den i faceValue variablen
+    //opretter en metoder der generer et tilfældigt tal mellem 1-6 og gemmer den i faceValue variablen
     public void roll()
     {
         faceValue = (int) ( ( Math.random(  ) * MAX ) + 1 );

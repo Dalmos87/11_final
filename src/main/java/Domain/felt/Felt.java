@@ -1,11 +1,12 @@
 package Domain.felt;
 
 public class Felt {
-    private String name;
-    private int index;
-    private String color;
-    private char type;
+    private String name; //opretter et reference objekt af typen String(Feltets navn)
+    private int index;//oprettet en primitiv variable af typen int
+    private String color;//oprettet et referenceobjekt af typen string(feltets farve)
+    private char type;//oprettet en primitiv variable af typen char(id)
 
+    //oprettet en konstruktor til at initialisere felternes oplysninger
     public Felt(String name, int index,String color, char type){
         this.name=name;
         this.index=index;

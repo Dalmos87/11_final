@@ -8,10 +8,9 @@ public class Spiller {
     private boolean hasPrisonCard=false; //erklærer en primitiv variable af typen boolean som gemmer om spilleren har et ud af fængsel kort
     private boolean inPrison=false; // erlærer en primitiv variable af typen boolean, her gemmes om spilleren er i fængsel eller ej
     private boolean nextTurnVacantField = false; //erklærer en primitiv variable af typen boolean som gemmer om feltet ved spillerens nuværende position er ledigt
-    ////////////////////////////////////////
-    private boolean indkomstSkatFelt= false;
-    private boolean StatsSkatFelt= false;
-    ///////////////////////////////////////
+    private boolean indkomstSkatFelt= false; // erklærer en primitiv variable af typen boolean, her gemmes om spilleren er i indkomstskatfelt
+    private boolean StatsSkatFelt= false; // erklærer en primitiv variable af typen boolean, her gemmes om spilleren er i StatsSkatFeltet
+
 
 
 
@@ -91,21 +90,21 @@ public class Spiller {
         return this.account;
     }
 
-   ///////////////////////////////////////////////////////////////
+    // opretter en metoder der retunere om man er på indkomstskatsfeltet eller ej
     public boolean isIndkomstSkatFelt() {
         return indkomstSkatFelt;
     }
-
+    // //opretter en metode der modtager om en spiller er på indkomstskatsfeltet
     public void setIndkomstSkatFelt(boolean indkomstSkatFelt) {
         this.indkomstSkatFelt = indkomstSkatFelt;
     }
-
+    // opretter en metoder der retunere om man er på StatsSkatFeltet eller ej
     public boolean isStatsSkatFelt() {
         return StatsSkatFelt;
     }
-
+    // //opretter en metode der modtager om en spiller er på Statskatsfeltet
     public void setStatsSkatFelt(boolean statsSkatFelt) {
         StatsSkatFelt = statsSkatFelt;
     }
-    /////////////////////////////////////////////////////////
+
 }

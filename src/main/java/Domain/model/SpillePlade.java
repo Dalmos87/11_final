@@ -4,9 +4,9 @@ import Domain.felt.*;
 
 
 public class SpillePlade {
-    protected Felt[] fields;
-    private Skød[] properties;
-
+    protected Felt[] fields;//oprettet et reference objekt af typen Array af feltklassen
+    private Skød[] properties;//oprettet et reference opjekt af typen Array af skødklassen
+    //oprettet en konstruktør der inititalisere spilleplade oplysninger
     public SpillePlade(String[] names, char[] types, int[] prices, String[] colors){
         int numberOfFields = names.length;
         this.fields = new Felt[numberOfFields];

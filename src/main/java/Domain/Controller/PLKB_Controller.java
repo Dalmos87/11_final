@@ -3,8 +3,8 @@ package Domain.Controller;
 import Domain.model.PrøvLykkenKortBunke;
 
 public class PLKB_Controller {
-    private PrøvLykkenKortBunke prøvLykkenKortBunke;
-
+    private PrøvLykkenKortBunke prøvLykkenKortBunke; //oprettet et reference objekt af klassen plkb
+    //opretter en konstruktør der inititialsere PLKB_Controllers oplysninger
     public PLKB_Controller(int numberOfPlayers){
         this.prøvLykkenKortBunke = new PrøvLykkenKortBunke(chanceCardTexts,numberOfPlayers);
         this.prøvLykkenKortBunke.shuffle();

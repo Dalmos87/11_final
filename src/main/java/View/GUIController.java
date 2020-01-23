@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 public class GUIController {
-
+    //oprettet et reference objekt af guiklassen
         private GUI gui;
         private GUI_Field[] guiFields;
         private GUI_Player[] guiPlayers;

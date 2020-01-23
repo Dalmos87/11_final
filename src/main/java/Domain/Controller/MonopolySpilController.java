@@ -12,12 +12,9 @@ public class MonopolySpilController {
         private boolean gameOver = false;
         private int startBonus=4000;
         private SpillePladeController boardController;
-        private GUIController guiController;
         private PLKB_Controller ccd_controller;
-
-
         private SpillerController playerController;
-
+        //opretten en konstruktør der inititalisere monopolySpilController oplysninger
         public MonopolySpilController() {
             this.boardController = new SpillePladeController();
             this.raflebæger = new Raflebæger();
@@ -32,7 +29,7 @@ public class MonopolySpilController {
         }
 
 
-
+        //oprettet en metode
         public void setupPlayerController(String[] playerNames){
             this.playerController = new SpillerController(playerNames);
             ccd_controller = new PLKB_Controller(playerNames.length);

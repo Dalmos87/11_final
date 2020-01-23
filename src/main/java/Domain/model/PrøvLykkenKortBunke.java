@@ -15,7 +15,7 @@ public class PrøvLykkenKortBunke {
         }
     }
 
-    //opretter en metode der modtager tilfældige kort og blander dem, derefter gemmes de i array objekter
+    //opretter en metode der modtager tilfældige kort og blander dem, derefter gemmes de i array objekter men er byttet
     public void swap(int a, int b){
         PrøvLykkenKort cardA = prøvLykkenKorts[a];
         PrøvLykkenKort cardB = prøvLykkenKorts[b];
@@ -23,7 +23,7 @@ public class PrøvLykkenKortBunke {
         prøvLykkenKorts[b] = cardA;
     }
 
-
+    //opretter en metode der blander kortene sammen
     public void shuffle(){
         for (int i=0; i<1000; i++ ){
             int a= (int) (Math.random()*prøvLykkenKorts.length);
@@ -31,7 +31,7 @@ public class PrøvLykkenKortBunke {
             swap(a,b);
         }
     }
-
+    //opretter en metode der sætter et brugt kort neders i bunken
     public PrøvLykkenKort draw(){
         PrøvLykkenKort upper= prøvLykkenKorts[0];
         for (int i=0; i<prøvLykkenKorts.length-1;i++){
